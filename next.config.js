@@ -5,6 +5,8 @@ const withNextra = require('nextra')({
 })
 
 module.exports = withNextra({
+    basePath: process.env.BASE_PATH,
+    assetPrefix: process.env.BASE_PATH,
     images: {
         unoptimized: true
     }
