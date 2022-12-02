@@ -1,0 +1,18 @@
+# Another Page
+
+```ts filename="service.ts" {0} copy
+   async function downloadStreamAsFile(streamUrl: string, fileName: string): Promise<StreamResponseType | undefined> {
+        const writer = createWriteStream(`${process.env.DOWNLOADS_DIR}/${fileName}`);
+        try {
+            const {data, status, statusText} = await this.api.get(streamUrl);
+            writer.on('finish', () => {
+                console.log('Stream on finish: ', statusText);
+            })
+            writer.on('error', () => console.error("Error while downloading stream!"));
+            data.pipe(writer)
+            return {status: status, statusText: statusText}
+        } catch (error) {
+            ErrorHandler(error);
+        }
+    }
+```
