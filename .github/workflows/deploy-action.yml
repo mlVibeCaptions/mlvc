@@ -15,12 +15,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-          cache: pnpm
+          cache: npm
 
       - name: Build 🔧
         run: |
-          pnpm install
-          pnpm build
+          npm install
+          npm build
           touch out/.nojekyll
       #          echo "konstanzakapsali.com" >> out/CNAME
       #          npm run sitemap
